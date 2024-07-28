@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: jukebox
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jukebox
+    username: jukebox
+    password: jukebox
+  #spring.jpa.hibernate.ddl-auto=<create | create-drop | update | validate | none>
+  jpa:
+    hibernate:
+      ddl-auto: update
+  devtools:
+    restart:
+      exclude:
+
+# Swagger UI configuration, use http://localhost:8080/swagger-ui for endpoints swagger view
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+  api-docs:
+    path: /api-docs
+
+songs:
+  file:
+    name: songs.csv
+

@@ -1,0 +1,531 @@
+{
+	"info": {
+		"_postman_id": "d0025d89-728a-4ff0-bdf4-bf8b0b4a1eff",
+		"name": "jukebox-musicplayer",
+		"description": "# _**Jukebox**_, a Music Player.\n\n**It has functionalities like : -**\n\n1. Create playlist.\n    \n2. Add songs to playlist,\n    \n3. Delete songs from playlist.\n    \n4. Delete playlist.\n    \n5. PlayPlaylist, which will play first song of playlist.\n    \n6. Play next song.\n    \n7. Play prev song.\n    \n8. Play preferred song from the playlist.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27177247"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "createUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"qwerty\",\r\n    \"email\": \"sdfsd@example.com\",\r\n    \"password\": \"sdfsdfs\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						},
+						"description": "_**Create a new user but email and username must be unique**_"
+					},
+					"response": []
+				},
+				{
+					"name": "getUserById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "_**Get user by Id.**_\n\n_**Searched through PathVariable id**_"
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"qwerty\",\r\n    \"email\": \"sdfsd@example.com\",\r\n    \"password\": \"sdfsdfs\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/qwerty",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"qwerty"
+							]
+						},
+						"description": "_**Update the user but userName and email must be unique.**_\n\n_**Uses PathVariable id to get the use and update.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "getUserByUserName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/Max",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"Max"
+							]
+						},
+						"description": "**As user has unique username so we can query the user.**\n\n_**Using PathVariable userName but even though userId provide it will give user.**_"
+					},
+					"response": []
+				}
+			],
+			"description": "_**A user with unique username, unique email and password.**_\n\n_**Has playlists with songs.**_"
+		},
+		{
+			"name": "Song",
+			"item": [
+				{
+					"name": "getAllSongs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/songs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs"
+							]
+						},
+						"description": "_**Note -> Must not be used, if alot of data.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "createSong",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"string\",\r\n  \"genre\": \"string\",\r\n  \"album\": \"string\",\r\n  \"artist\": \"string\",\r\n  \"featuredArtists\": \"string\"  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/songs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs"
+							]
+						},
+						"description": "_**Only song name is mandatory.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "getSong",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/songs/6ec35735-3382-49b4-b34b-9dc9ec545f46",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs",
+								"6ec35735-3382-49b4-b34b-9dc9ec545f46"
+							]
+						},
+						"description": "**Get a song by id use PathVariable id.**"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteSong",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/songs/6ec35735-3382-49b4-b34b-9dc9ec545f46",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs",
+								"6ec35735-3382-49b4-b34b-9dc9ec545f46"
+							]
+						},
+						"description": "_**Delete a song by id using PathVariable id.**_"
+					},
+					"response": []
+				}
+			],
+			"description": "CRUD for songs"
+		},
+		{
+			"name": "Playlist",
+			"item": [
+				{
+					"name": "getAllPlaylists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/playlists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"playlists"
+							]
+						},
+						"description": "_**Get all playlist in the db**_\n\n_**Note -> shouldn't be used if alot of data.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "createPlaylist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"playListName\": \"Dino 1\",\r\n  \"userName\": \"Max\",\r\n  \"songIds\": [\r\n    \"A\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/playlists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"playlists"
+							]
+						},
+						"description": "_**Give a userName or userId and a list of songsId.**_\n\n_**and a playlist Name will create a playlist for the user.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "getPlaylist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/playlists/bc628552-7fd3-4f74-8cff-47566864da56",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"playlists",
+								"bc628552-7fd3-4f74-8cff-47566864da56"
+							]
+						},
+						"description": "_**Get a playlist by Id using PathVariable id.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "deletePlaylist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/playlists?id=ab912512-0d0f-4458-b391-c9472792dbaa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"playlists"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "ab912512-0d0f-4458-b391-c9472792dbaa"
+								}
+							]
+						},
+						"description": "_**Delete a playlist by Id using PathVariable id.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "addSongs",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"playListName\": \"Dino 2\",\r\n    \"userName\": \"Max\",\r\n    \"songIds\": [\r\n        \"C\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/playlists/modify?mode=add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"playlists",
+								"modify"
+							],
+							"query": [
+								{
+									"key": "mode",
+									"value": "add"
+								}
+							]
+						},
+						"description": "_**Add songs to playlist by provide a mode= dd as Request Param**_\n\n_**Need to provide the playlistId and UserName or UserId and List of ids of songs.**_"
+					},
+					"response": []
+				},
+				{
+					"name": "removeSongs",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"playlistId\": \"bc628552-7fd3-4f74-8cff-47566864da56\",\r\n    \"playListName\": \"Dino 2\",\r\n    \"userName\": \"Max\",\r\n    \"songIds\": [\r\n        \"C\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/playlists/modify?mode=remove",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"playlists",
+								"modify"
+							],
+							"query": [
+								{
+									"key": "mode",
+									"value": "remove"
+								}
+							]
+						},
+						"description": "_**Delete songs from playlist by providing mode=remove Request Param.**_\n\n_**Need to provide the playlistId and UserName or UserId and List of ids of songs.**_"
+					},
+					"response": []
+				}
+			],
+			"description": "_**Playlist CRUD.**_"
+		},
+		{
+			"name": "Playback",
+			"item": [
+				{
+					"name": "PlayFirstSongOfPlaylist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"Max\",\r\n  \"playlistId\": \"bc628552-7fd3-4f74-8cff-47566864da56\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/songs/playback",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs",
+								"playback"
+							]
+						},
+						"description": "_**Play first song of playlist.**_\n\n- _UserName or UserId must be provided._\n    \n- _Playlist id must be provided._"
+					},
+					"response": []
+				},
+				{
+					"name": "playNextSong",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"Max\",\r\n  \"playlistId\": \"bc628552-7fd3-4f74-8cff-47566864da56\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/songs/playback/play?op=next",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs",
+								"playback",
+								"play"
+							],
+							"query": [
+								{
+									"key": "op",
+									"value": "next"
+								}
+							]
+						},
+						"description": "_**Play next song of the playlist**_\n\n- _UserName or UserId must be provided._\n    \n- _Playlist id must be provided. (its the active list)_"
+					},
+					"response": []
+				},
+				{
+					"name": "playPrevSong",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"Max\",\r\n  \"playlistId\": \"bc628552-7fd3-4f74-8cff-47566864da56\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/songs/playback/play?op=prev",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs",
+								"playback",
+								"play"
+							],
+							"query": [
+								{
+									"key": "op",
+									"value": "prev"
+								}
+							]
+						},
+						"description": "_**Play prev song of the playlist**_\n\n- _UserName or UserId must be provided._\n    \n- _Playlist id must be provided. (its the active list)_"
+					},
+					"response": []
+				},
+				{
+					"name": "playRandomSong",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"Max\",\r\n  \"playlistId\": \"bc628552-7fd3-4f74-8cff-47566864da56\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/songs/playback/play/B",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs",
+								"playback",
+								"play",
+								"B"
+							]
+						},
+						"description": "_**Play preferred song of the playlist.**_\n\n- _UserName or UserId must be provided._\n    \n- _Playlist id must be provided._"
+					},
+					"response": []
+				}
+			],
+			"description": "**Play playlist, play next/prev song or preferred song of the plalist.**"
+		}
+	]
+}
